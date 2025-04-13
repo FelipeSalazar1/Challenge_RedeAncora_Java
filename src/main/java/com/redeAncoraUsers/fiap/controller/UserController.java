@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserRepository repository;
@@ -30,12 +30,12 @@ public class UserController {
         return repository.findAll();
     }
 
-    @GetMapping(path = "/active")
+    @GetMapping("/active")
     public Page<UserGetData> getActivatedUsers(Pageable pageable) {
         return repository.findAllByActivatedTrue(pageable).map(UserGetData::new);
     }
 
-    @GetMapping(path = "/inactive")
+    @GetMapping("/inactive")
     public Page<UserGetData> getInactiveUsers(Pageable pageable) {
         return repository.findAllByActivatedFalse(pageable).map(UserGetData::new);
     }
