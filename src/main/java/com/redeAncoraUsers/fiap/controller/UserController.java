@@ -1,11 +1,10 @@
 package com.redeAncoraUsers.fiap.controller;
 
-import com.redeAncoraUsers.fiap.user.User;
-import com.redeAncoraUsers.fiap.user.UserPostData;
-import com.redeAncoraUsers.fiap.user.UserRepository;
-import com.redeAncoraUsers.fiap.user.UserUpdateData;
+import com.redeAncoraUsers.fiap.user.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +28,16 @@ public class UserController {
     @GetMapping
     public List<User> getUsers(){
         return repository.findAll();
+    }
+
+    @GetMapping(path = "/active")
+    public Page<UserGetData> getActivatedUsers(Pageable pageable) {
+        return repository.findAllByActivatedTrue(pageable).map(UserGetData::new);
+    }
+
+    @GetMapping(path = "/inactive")
+    public Page<UserGetData> getInactiveUsers(Pageable pageable) {
+        return repository.findAllByActivatedFalse(pageable).map(UserGetData::new);
     }
 
     @PutMapping
