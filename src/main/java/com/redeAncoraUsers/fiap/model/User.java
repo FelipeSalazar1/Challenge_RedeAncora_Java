@@ -32,12 +32,16 @@ public class User {
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", nullable = false)
+    private PersonEntity person;
 
-    public User(UserPostData data) {
+    public User(UserPostData data, PersonEntity person) {
         this.email = data.email();
         this.password = data.password();
         this.createdAt = LocalDateTime.now();
         this.activated = true;
+        this.person = person;
     }
 
     public void updateInfo(@Valid UserUpdateData data) {
