@@ -32,8 +32,8 @@ public class User {
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", nullable = false, unique = true)
     private PersonEntity person;
 
     public User(UserPostData data, PersonEntity person) {
