@@ -1,7 +1,6 @@
-package com.redeAncoraUsers.fiap.user;
+package com.redeAncoraUsers.fiap.validators;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record UserUpdateData(

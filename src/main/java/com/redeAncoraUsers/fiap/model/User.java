@@ -1,6 +1,8 @@
-package com.redeAncoraUsers.fiap.user;
+package com.redeAncoraUsers.fiap.model;
 
 
+import com.redeAncoraUsers.fiap.validators.UserPostData;
+import com.redeAncoraUsers.fiap.validators.UserUpdateData;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

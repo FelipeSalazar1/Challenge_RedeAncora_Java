@@ -1,4 +1,6 @@
-package com.redeAncoraUsers.fiap.user;
+package com.redeAncoraUsers.fiap.validators;
+
+import com.redeAncoraUsers.fiap.model.User;
 
 import java.time.LocalDateTime;
 

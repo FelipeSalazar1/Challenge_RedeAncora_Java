@@ -1,6 +1,10 @@
 package com.redeAncoraUsers.fiap.controller;
 
-import com.redeAncoraUsers.fiap.user.*;
+import com.redeAncoraUsers.fiap.model.User;
+import com.redeAncoraUsers.fiap.repository.UserRepository;
+import com.redeAncoraUsers.fiap.validators.UserGetData;
+import com.redeAncoraUsers.fiap.validators.UserPostData;
+import com.redeAncoraUsers.fiap.validators.UserUpdateData;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
