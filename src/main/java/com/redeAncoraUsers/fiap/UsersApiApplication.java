@@ -14,14 +14,20 @@ public class UsersApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UsersApiApplication.class, args);
 
-		SortUtils sortUtils = new SortUtils();
+//		1
+//		SortUtils sortUtils = new SortUtils();
+//
+//		MontadoraService montadora = new MontadoraService();
+//		MontadoraResponse response = montadora.converterJson(montadora.getData());
+//
+//		List<MontadoraResponse.Montadora> montadoras = response.data();
+//
+//		System.out.println(sortUtils.sortById(montadoras));
 
-		MontadoraService montadora = new MontadoraService();
-		MontadoraResponse response = montadora.converterJson(montadora.getData());
-
-		List<MontadoraResponse.Montadora> montadoras = response.data();
-
-		System.out.println(sortUtils.sortById(montadoras));
+//		2
+//		HeapProdutoService heapProdutoService = new HeapProdutoService();
+//		heapProdutoService.getKProdutosComMenorId();
+//		heapProdutoService.getKProdutosComMaiorId();
 	}
 
 }
