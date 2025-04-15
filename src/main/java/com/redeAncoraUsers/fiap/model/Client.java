@@ -1,7 +1,7 @@
 package com.redeAncoraUsers.fiap.model;
 
-import com.redeAncoraUsers.fiap.validators.PersonPostData;
-import com.redeAncoraUsers.fiap.validators.PersonUpdateData;
+import com.redeAncoraUsers.fiap.validators.ClientPostData;
+import com.redeAncoraUsers.fiap.validators.ClientUpdateData;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Person")
-@Table(name = "person")
-public class PersonEntity {
+@Entity(name = "Client")
+@Table(name = "client")
+public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
-    @SequenceGenerator(name = "person_seq", sequenceName = "SEQ_PERSON", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq")
+    @SequenceGenerator(name = "client_seq", sequenceName = "SEQ_PERSON", allocationSize = 1)
     private Long id;
 
     private String name;
@@ -27,7 +27,7 @@ public class PersonEntity {
     private String phone;
     private String address;
 
-    public PersonEntity(@Valid PersonPostData data) {
+    public Client(@Valid ClientPostData data) {
         this.name = data.name();
         this.cpf_cnpj = data.cpf_cnpj();
         this.phone = data.phone();
@@ -35,7 +35,7 @@ public class PersonEntity {
     }
 
 
-    public void updateInfo(@Valid PersonUpdateData data) {
+    public void updateInfo(@Valid ClientUpdateData data) {
         if (data == null) {
             return;
         }

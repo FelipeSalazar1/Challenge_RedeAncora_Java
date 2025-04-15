@@ -2,7 +2,7 @@ package com.redeAncoraUsers.fiap.validators;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record PersonPostData (
+public record ClientPostData (
 
     @NotBlank
     String name,
