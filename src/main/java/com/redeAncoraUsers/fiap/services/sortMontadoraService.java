@@ -1,6 +1,5 @@
 package com.redeAncoraUsers.fiap.services;
 
-import com.redeAncoraUsers.fiap.model.Montadora;
 import com.redeAncoraUsers.fiap.validators.MontadoraGetData;
 import com.redeAncoraUsers.fiap.validators.MontadoraResponse;
 import org.springframework.http.*;
@@ -9,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class MontadoraService {
+public class sortMontadoraService {
     private final RestTemplate restTemplate;
 
-    public MontadoraService(){
+    public sortMontadoraService(){
         this.restTemplate = new RestTemplate();
     }
 
