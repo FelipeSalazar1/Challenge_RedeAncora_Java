@@ -1,6 +1,6 @@
 package com.redeAncoraUsers.fiap;
 
-import com.redeAncoraUsers.fiap.services.AutocompleteService;
+import com.redeAncoraUsers.fiap.services.AutoCompleteService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UsersApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UsersApiApplication.class, args);
+//		SpringApplication.run(UsersApiApplication.class, args);
 
 
 
@@ -28,7 +28,7 @@ public class UsersApiApplication {
 //		heapProdutoService.getKProdutosComMaiorId();
 
 //		3
-		AutocompleteService autocompleteService = new AutocompleteService();
+		AutoCompleteService autocompleteService = new AutoCompleteService();
 		String prefix = "Fil";
 		autocompleteService.suggest(prefix);
 	}

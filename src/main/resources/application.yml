@@ -3,8 +3,8 @@ spring:
     name: Users API
   datasource:
     url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
-    username:
-    password:
+    username: rm553464
+    password: 251104
     driver-class-name: oracle.jdbc.OracleDriver
   jpa:
     show-sql: true

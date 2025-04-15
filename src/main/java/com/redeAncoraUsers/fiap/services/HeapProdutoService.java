@@ -2,8 +2,8 @@ package com.redeAncoraUsers.fiap.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.redeAncoraUsers.fiap.Utils.MaxHeapUtils;
-import com.redeAncoraUsers.fiap.Utils.MinHeapUtils;
+import com.redeAncoraUsers.fiap.utils.MaxHeapUtils;
+import com.redeAncoraUsers.fiap.utils.MinHeapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;

@@ -8,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class sortMontadoraService {
+public class SortMontadoraService {
     private final RestTemplate restTemplate;
 
-    public sortMontadoraService(){
+    public SortMontadoraService(){
         this.restTemplate = new RestTemplate();
     }
 

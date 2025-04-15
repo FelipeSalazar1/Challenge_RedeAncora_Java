@@ -2,7 +2,7 @@ package com.redeAncoraUsers.fiap.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.TextNode;
-import com.redeAncoraUsers.fiap.Utils.MaxHeapUtils;
+import com.redeAncoraUsers.fiap.utils.MaxHeapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
@@ -10,7 +10,7 @@ import org.springframework.http.*;
 import java.util.*;
 
 @Service
-public class AutocompleteService {
+public class AutoCompleteService {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private static final String URL = "https://api-stg-catalogo.redeancora.com.br/superbusca/api/integracao/catalogo/v2/produtos-filhos/query";
