@@ -8,10 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UsersApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UsersApiApplication.class, args);
-
-
-
+//		SpringApplication.run(UsersApiApplication.class, args);
 //1
 //		SortUtils sortUtils = new SortUtils();
 //
@@ -28,9 +25,9 @@ public class UsersApiApplication {
 //		heapProdutoService.getKProdutosComMaiorId();
 
 //		3
-//		AutoCompleteService autocompleteService = new AutoCompleteService();
-//		String prefix = "Fil";
-//		autocompleteService.suggest(prefix);
+		AutoCompleteService autocompleteService = new AutoCompleteService();
+		String prefix = "Fil";
+		System.out.println(autocompleteService.suggest(prefix));
 	}
 
 }

@@ -2,6 +2,7 @@ package com.redeAncoraUsers.fiap.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.TextNode;
+import com.redeAncoraUsers.fiap.utils.AutocompleteUtils;
 import com.redeAncoraUsers.fiap.utils.MaxHeapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +15,7 @@ public class AutoCompleteService {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private static final String URL = "https://api-stg-catalogo.redeancora.com.br/superbusca/api/integracao/catalogo/v2/produtos-filhos/query";
-    private static final String TOKEN = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkRFQkJDQUJBMjIwQjRGOTVDOTA5NTNFMURBMTlENEUzQzFDRDFGRDciLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiIzcnZLdWlJTFQ1WEpDVlBoMmhuVTQ4SE5IOWMifQ.eyJuYmYiOjE3NDQ2NzkyMTAsImV4cCI6MTc0NDc2NTYxMCwiaXNzIjoiaHR0cHM6Ly9zc28tY2F0YWxvZ28ucmVkZWFuY29yYS5jb20uYnIiLCJhdWQiOiJTZWFyY2hFbmdpbmVBcGkuc3RnIiwiY2xpZW50X2lkIjoiNjV0dmg2cnZuNGQ3dWVyM2hxcW0ycDhrMnB2bm01d3giLCJyb2xlIjoicmVhZCIsInNjb3BlIjpbInNlYXJjaGVuZ2luZWFwaS5zdGciXX0.HH17qojHTt6R8Tg_-6w8Lqjy8CUCyfpTERge9CnkkrsNs7nS4DLUPPnqbX01FtKDVKtmjZ3i2JCAPqw8BXgPs5kMs7DWVpaa2-OjQHLqYChQPwC0aJbjB9t36C6kp30m4HA4Sy9hBHcjgi21SV2wjbJxtGS59TKFN3Pm4H4OIhc2I_RNyACIaFfwvj87h766F5zBxcn0u8FWevtew8rVpesej_scfX9pighg6s9k89i55vk0qOQpwrtH2eB25vpkvjgMFdtMeMQybm5LF9W53atQUnKqxry6bJ-GWoRV0OdnOh36YWrTVAwdoyeebZOy8c2P_wJI0zcRQkdp1NlesH9SSHurtVecCfegwoVCSt4KK-A3ipuvzt1hq1gtlt81-TX2nQ5h5llRsXJ0sGExZ_aFYe8Us6aIl2WcWZ6lqwmdOAxHl5aUkzwjkET47P-TcJptgQJMD_ftupa2llFI1qAY0wHIvF8tPTM5cyWS2tHIjwDu4t7GwieGzJIGJTtszd9ujQNCvQVA9usp0OeNb9zZFcgHEJCE01ixh74t-a6XJ7nKwggOksYFF3nd2zPqCIehVrUpfUa6ooAGG2cbq82ccJPU1ncz8Csynm8yH3m6jw1RrJecrfBgx3HDJl0fcOqYDAhzREqIfKiwlWEOPDiS8JJolnV4-umNbt5b4Cs";
+    private static final String TOKEN = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkRFQkJDQUJBMjIwQjRGOTVDOTA5NTNFMURBMTlENEUzQzFDRDFGRDciLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiIzcnZLdWlJTFQ1WEpDVlBoMmhuVTQ4SE5IOWMifQ.eyJuYmYiOjE3NDQ3NjUxMzUsImV4cCI6MTc0NDg1MTUzNSwiaXNzIjoiaHR0cHM6Ly9zc28tY2F0YWxvZ28ucmVkZWFuY29yYS5jb20uYnIiLCJhdWQiOiJTZWFyY2hFbmdpbmVBcGkuc3RnIiwiY2xpZW50X2lkIjoiNjV0dmg2cnZuNGQ3dWVyM2hxcW0ycDhrMnB2bm01d3giLCJyb2xlIjoicmVhZCIsInNjb3BlIjpbInNlYXJjaGVuZ2luZWFwaS5zdGciXX0.kblEXCv16Le6X5uozTHnzp9Cgc_6ok3iCSsDo37DI4c3aYPB8b_Lz2Y8hmaK50_3MxQrUre1fdnQM1MLDfAePzVPjqMP6RsSXghhW9mjyKo8lC5aeZyzokLYzLYQ2XQ6y3D3Qygv809Hs9JP9xSVrt2fCm-CbaHak6lmTnLAcIaM30ESL6Hfba8xP0sFisiVQRGJ6JPZE-R0Qrj-5DL9rM2TLvnEMiPFo5TWn3C93QjBGI_hwFuu5Fs9GmJRin2D2NYGXyv_P0C8Bv5jDwVSV1v2zCxaT4VzCcqBD-I1ojrrkQsUX8pYwRcrStN3mSeLZQNdCOWsrB7Aa6ITvBu-Q-1J9N5ldi1CAkEAXBdilRk676um3obYzaP4hoYjiuTxjMd_GKPoRMMtZUqSccUoAohUIpBjGsFRtNhAZZ91EwRQ6QwHcc_10fTGZIajLKooFqqs7hQZA1pSQSbgVbdUw7Aokow5olmBQRRgLAcZT_mlUVkxs0hK-u4gHjUdtBhYAcbXLI46KbX5vG3nhVHXMiJVgl81ZGOS4PWjBua5yLMiocs7sGZN2Ah1v5G2cd31abjeLOedivi6KW4vV_qeJ1pCAviu_lR_tL8i9U-ismqiVXrsai0-iFfI8KmUhC3eMqHrvWmS2BCW2zPJbdqhjDgM7VZB_U7L07bD74WM47s";
 
     public List<String> suggest(String prefix) {
         Set<String> allWords = new HashSet<>();
@@ -27,7 +28,7 @@ public class AutoCompleteService {
             allWords.addAll(Arrays.asList(words));
         }
 
-        return getSuggestions(prefix.toUpperCase(), new ArrayList<>(allWords));
+        return AutocompleteUtils.getSuggestions(prefix.toUpperCase(), new ArrayList<>(allWords));
     }
 
     private List<String> getSuggestions(String prefix, List<String> words) {
