@@ -32,16 +32,11 @@ public class User {
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id", nullable = false, unique = true)
-    private Client client;
-
-    public User(UserPostData data, Client client) {
+    public User(UserPostData data) {
         this.email = data.email();
         this.password = data.password();
         this.createdAt = LocalDateTime.now();
         this.activated = true;
-        this.client = client;
     }
 
     public void updateInfo(@Valid UserUpdateData data) {

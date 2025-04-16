@@ -1,8 +1,6 @@
 package com.redeAncoraUsers.fiap.controller;
 
-import com.redeAncoraUsers.fiap.model.Client;
 import com.redeAncoraUsers.fiap.model.User;
-import com.redeAncoraUsers.fiap.repository.ClientRepository;
 import com.redeAncoraUsers.fiap.repository.UserRepository;
 import com.redeAncoraUsers.fiap.validators.UserGetData;
 import com.redeAncoraUsers.fiap.validators.UserPostData;
@@ -20,19 +18,16 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository repository;
-    private final ClientRepository clientRepository;
 
-    public UserController(UserRepository repository, ClientRepository clientRepository) {
+    public UserController(UserRepository repository) {
         this.repository = repository;
-        this.clientRepository = clientRepository;
     }
 
 
     @PostMapping
     @Transactional
     public void postUser(@RequestBody @Valid UserPostData data){
-        Client client = clientRepository.getReferenceById(data.clientId());
-        User user = new User(data, client);
+        User user = new User(data);
         repository.save(user);
     }
 
