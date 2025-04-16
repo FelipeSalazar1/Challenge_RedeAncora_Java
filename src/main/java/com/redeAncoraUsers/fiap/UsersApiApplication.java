@@ -1,7 +1,7 @@
 package com.redeAncoraUsers.fiap;
 
-import com.redeAncoraUsers.fiap.services.AutoCompleteService;
-import org.springframework.boot.SpringApplication;
+import com.redeAncoraUsers.fiap.services.HeapProdutoService;
+import com.redeAncoraUsers.fiap.utils.AutocompleteUtils;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -20,14 +20,14 @@ public class UsersApiApplication {
 //		System.out.println(sortUtils.sortById(montadoras));
 
 //		2
-//		HeapProdutoService heapProdutoService = new HeapProdutoService();
-//		heapProdutoService.getKProdutosComMenorId();
-//		heapProdutoService.getKProdutosComMaiorId();
+		HeapProdutoService heapProdutoService = new HeapProdutoService();
+		heapProdutoService.getKProdutosComMenorId();
+		heapProdutoService.getKProdutosComMaiorId();
 
 //		3
-		AutoCompleteService autocompleteService = new AutoCompleteService();
+		AutocompleteUtils autocompleteUtils = new AutocompleteUtils();
 		String prefix = "Fil";
-		System.out.println(autocompleteService.suggest(prefix));
+		System.out.println(autocompleteUtils.suggest(prefix));
 	}
 
 }

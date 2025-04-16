@@ -2,13 +2,25 @@ package com.redeAncoraUsers.fiap.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.TextNode;
+import com.redeAncoraUsers.fiap.services.AutoCompleteService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 public class AutocompleteUtils {
+
+    public List<String> suggest(String prefix) {
+        Set<String> allWords = new HashSet<>();
+        List<JsonNode> products = AutoCompleteService.fetchProducts();
+
+        for (JsonNode product : products) {
+            JsonNode productData = product.path("data");
+            String productName = productData.path("nomeProduto").asText();
+            String[] words = productName.split("\\s+");
+            allWords.addAll(Arrays.asList(words));
+        }
+
+        return AutocompleteUtils.getSuggestions(prefix.toUpperCase(), new ArrayList<>(allWords));
+    }
 
     public static List<String> getSuggestions(String prefix, List<String> words) {
         Map<String, Integer> frequencyMap = new HashMap<>();
