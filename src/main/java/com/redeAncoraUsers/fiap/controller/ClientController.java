@@ -2,6 +2,7 @@ package com.redeAncoraUsers.fiap.controller;
 
 import com.redeAncoraUsers.fiap.model.Client;
 import com.redeAncoraUsers.fiap.repository.ClientRepository;
+import com.redeAncoraUsers.fiap.repository.UserRepository;
 import com.redeAncoraUsers.fiap.validators.ClientGetData;
 import com.redeAncoraUsers.fiap.validators.ClientPostData;
 import com.redeAncoraUsers.fiap.validators.ClientUpdateData;
@@ -15,13 +16,18 @@ import java.util.List;
 public class ClientController {
 
     private final ClientRepository repository;
+    private final UserRepository userRepository;
 
-    public ClientController(ClientRepository repository) { this.repository = repository; }
+    public ClientController(ClientRepository repository, UserRepository userRepository) {
+        this.repository = repository;
+        this.userRepository = userRepository;
+    }
 
     @PostMapping
     @Transactional
     public void PostClient(@RequestBody @Valid ClientPostData data){
-        repository.save(new Client(data));
+        var user = userRepository.getReferenceById(data.user_id());
+        repository.save(new Client(data, user));
     }
 
     @PutMapping
@@ -33,8 +39,8 @@ public class ClientController {
     }
 
      @GetMapping
-     public List<Client> getClient(){
-         return repository.findAll();
+     public List<ClientGetData> getClient(){
+         return repository.findAll().stream().map(ClientGetData::new).toList();
      }
 
      @GetMapping("/{id}")

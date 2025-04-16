@@ -14,7 +14,9 @@ public record ClientPostData (
     String phone,
 
     @NotBlank
-    String address
+    String address,
+
+    Long user_id
 
 ){
 }

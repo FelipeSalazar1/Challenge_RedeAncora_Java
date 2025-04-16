@@ -27,11 +27,16 @@ public class Client {
     private String phone;
     private String address;
 
-    public Client(@Valid ClientPostData data) {
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Client(@Valid ClientPostData data, User user) {
         this.name = data.name();
         this.cpf_cnpj = data.cpf_cnpj();
         this.phone = data.phone();
         this.address = data.address();
+        this.user = user;
     }
 
 

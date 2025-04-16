@@ -1,14 +1,14 @@
-package com.redeAncoraUsers.fiap.utils;
+package com.redeAncoraUsers.fiap.utilities;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-public class MinHeapUtils {
+public class MaxHeapUtils {
 
     private final JsonNode[] heap;
     private final long[] keys;
     private int size;
 
-    public MinHeapUtils(int capacity) {
+    public MaxHeapUtils(int capacity) {
         this.heap = new JsonNode[capacity];
         this.keys = new long[capacity];
         this.size = 0;
@@ -19,21 +19,21 @@ public class MinHeapUtils {
         keys[size] = key;
         int current = size++;
 
-        while (current > 0 && keys[parent(current)] > keys[current]) {
+        while (current > 0 && keys[parent(current)] < keys[current]) {
             swap(current, parent(current));
             current = parent(current);
         }
     }
 
-    public JsonNode extractMin() {
+    public JsonNode extractMax() {
         if (size == 0) {
             return null;
         }
-        JsonNode min = heap[0];
+        JsonNode max = heap[0];
         heap[0] = heap[--size];
         keys[0] = keys[size];
         heapify(0);
-        return min;
+        return max;
     }
 
     public boolean isEmpty() {
@@ -43,19 +43,19 @@ public class MinHeapUtils {
     private void heapify(int index) {
         int left = left(index);
         int right = right(index);
-        int smallest = index;
+        int largest = index;
 
-        if (left < size && keys[left] < keys[smallest]) {
-            smallest = left;
+        if (left < size && keys[left] > keys[largest]) {
+            largest = left;
         }
 
-        if (right < size && keys[right] < keys[smallest]) {
-            smallest = right;
+        if (right < size && keys[right] > keys[largest]) {
+            largest = right;
         }
 
-        if (smallest != index) {
-            swap(index, smallest);
-            heapify(smallest);
+        if (largest != index) {
+            swap(index, largest);
+            heapify(largest);
         }
     }
 
